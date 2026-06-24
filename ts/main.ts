@@ -1,4 +1,7 @@
 import { Todo } from "./types.js";
+
+//constraints
+const STORAGE_KEY:string = "todos";
 //array to store todos
 let todos: Todo[] = [];
 
@@ -85,6 +88,7 @@ function deleteTodo(id: number): void {
   todos = todos.filter(
     (todo) => todo.id !== id
   );
+  saveTodos();
   renderTodos();
   toggleEmptyState();
 }
@@ -100,6 +104,7 @@ function toggleTodo(id: number): void {
 
     return todo;
   });
+  saveTodos();
   renderTodos();
 }
 
@@ -128,9 +133,22 @@ function updateTodo(id: number,newTaskName: string): void {
 
     return todo;
   });
-
+  saveTodos();
   renderTodos();
 }
+
+//save to local storage
+function saveTodos(): void {
+  localStorage.setItem(STORAGE_KEY,JSON.stringify(todos));
+}
+
+//load todos
+function loadTodos(): void {
+  const storedTodos =localStorage.getItem(STORAGE_KEY);
+  if (!storedTodos) return;
+  todos = JSON.parse(storedTodos);
+}
+//submit handler
 form?.addEventListener("submit", (event) => {
   event.preventDefault();
 
@@ -159,7 +177,7 @@ form?.addEventListener("submit", (event) => {
     };
 
     todos.push(todo);
-
+    saveTodos();
     renderTodos();
     toggleEmptyState();
   }
@@ -169,3 +187,7 @@ form?.addEventListener("submit", (event) => {
     input.focus();
   }
 });
+
+loadTodos();
+renderTodos();
+toggleEmptyState();
