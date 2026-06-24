@@ -6,7 +6,7 @@ let todos: Todo[] = [];
 const form=document.querySelector<HTMLFormElement>('#todo-form');
 const input=document.querySelector<HTMLInputElement>('#todo-input');
 const todoList=document.querySelector<HTMLUListElement>('#todo-list');
-const emptyState= document.querySelector<HTMLDivElement>('#empty-state')
+const emptyState= document.querySelector<HTMLDivElement>('#empty-state');
 //functions
 function renderTodos(): void {
   if (!todoList) return;
@@ -24,10 +24,12 @@ function createTodoElement(todo: Todo): HTMLLIElement {
         `<div class="flex items-center gap-3">
               <input
                 type="checkbox"
-                class="h-4 w-4 accent-blue-600"
+                id="todo-checkbox"
+                class="h-4 w-4 accent-blue-600 cursor-pointer"
+                 ${todo.completed ? "checked" : ""}
               />
 
-              <span class="font-medium text-slate-800">
+              <span class=${todo.completed ?"line-through text-slate-400":"font-medium text-slate-800"}>
                 ${todo.taskName}
               </span>
             </div>
@@ -40,15 +42,25 @@ function createTodoElement(todo: Todo): HTMLLIElement {
               </button>
 
               <button
+                id="delete-btn"
                 class="rounded-lg py-2 px-2 text-white bg-red-500 transition hover:bg-red-600 hover:text-white cursor-pointer"
               >
                 Delete
               </button>
         </div>`;
+          const deleteBtn =li.querySelector<HTMLButtonElement>("#delete-btn");
+          const checkBox=li.querySelector<HTMLInputElement>("#todo-checkbox");
+
+          deleteBtn?.addEventListener("click", () => {
+            deleteTodo(todo.id);
+          });
+          checkBox?.addEventListener("change", () => {
+            toggleTodo(todo.id);
+          });
   return li;
 }
 
-//empty state check
+//empty state handle
 function toggleEmptyState(): void {
   if (!emptyState || !todoList) return;
 
@@ -59,6 +71,29 @@ function toggleEmptyState(): void {
     emptyState.classList.add("hidden");
     todoList.classList.remove("hidden");
   }
+}
+
+//delete functionality
+function deleteTodo(id: number): void {
+  todos = todos.filter(
+    (todo) => todo.id !== id
+  );
+  renderTodos();
+  toggleEmptyState();
+}
+//toggle to do functionality
+function toggleTodo(id: number): void {
+  todos = todos.map((todo) => {
+    if (todo.id === id) {
+      return {
+        ...todo,
+        completed: !todo.completed,
+      };
+    }
+
+    return todo;
+  });
+  renderTodos();
 }
 
 form?.addEventListener("submit", (event) => {
