@@ -39,40 +39,13 @@
         </button>
       </form>
       <!-- Todo Container -->
-       <section class="mt-6 bg-white rounded-2xl p-2 ">
+       <section class="mt-6 bg-white rounded-2xl p-2 min-h-120 min-w-sm">
         <!-- todo list -->
          <ul id="todo-list" class="space-y-3">
-          <li
-            class="flex gap-4 items-center justify-between rounded-2xl border border-slate-200 bg-white px-5 py-4 shadow-sm transition hover:border-slate-300 hover:shadow-md"
-          >
-            <div class="flex items-center gap-3">
-              <input
-                type="checkbox"
-                class="h-4 w-4 accent-blue-600"
-              />
-
-              <span class="font-medium text-slate-800">
-                Learn TypeScript
-              </span>
-            </div>
-
-            <div class="flex items-center gap-2">
-              <button
-                class="rounded-lg py-2 px-4 text-white bg-blue-500 transition hover:bg-blue-600 hover:text-white cursor-pointer"
-              >
-                Edit
-              </button>
-
-              <button
-                class="rounded-lg py-2 px-2 text-white bg-red-500 transition hover:bg-red-600 hover:text-white cursor-pointer"
-              >
-                Delete
-              </button>
-            </div>
-          </li>
+          <!-- Todo Items will be rendered here -->
          </ul>
          <!-- Empty Todo -->
-         <div id="empty-state" class="mt-8 text-center min-h-40 flex flex-col justify-center">
+         <div id="empty-state" class="mt-8 text-center flex flex-col justify-center items-center">
             <p class="text-secondary text-md font-bold">
               No tasks yet.
             </p>
