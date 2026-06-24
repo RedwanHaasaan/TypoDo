@@ -7,6 +7,8 @@ const form=document.querySelector<HTMLFormElement>('#todo-form');
 const input=document.querySelector<HTMLInputElement>('#todo-input');
 const todoList=document.querySelector<HTMLUListElement>('#todo-list');
 const emptyState= document.querySelector<HTMLDivElement>('#empty-state');
+const submitBtn = document.querySelector<HTMLButtonElement>('#submit-btn')
+let editingTodoId: number | null = null;
 //functions
 function renderTodos(): void {
   if (!todoList) return;
@@ -19,7 +21,7 @@ function renderTodos(): void {
 //create a todo element card
 function createTodoElement(todo: Todo): HTMLLIElement {
   const li = document.createElement("li");
-  li.className="flex gap-4 items-center justify-between rounded-2xl border border-slate-200 bg-white px-5 py-4 shadow-sm transition hover:border-slate-300 hover:shadow-md"
+  li.className=`flex gap-4 items-center justify-between rounded-2xl border border-slate-200 px-5 py-4 shadow-sm transition hover:border-slate-300 hover:shadow-md${todo.completed?"bg-slate-50 opacity-70":"bg-white"}`
   li.innerHTML=
         `<div class="flex items-center gap-3">
               <input
@@ -36,6 +38,7 @@ function createTodoElement(todo: Todo): HTMLLIElement {
 
             <div class="flex items-center gap-2">
               <button
+                id="edit-btn"
                 class="rounded-lg py-2 px-4 text-white bg-blue-500 transition hover:bg-blue-600 hover:text-white cursor-pointer"
               >
                 Edit
@@ -50,13 +53,17 @@ function createTodoElement(todo: Todo): HTMLLIElement {
         </div>`;
           const deleteBtn =li.querySelector<HTMLButtonElement>("#delete-btn");
           const checkBox=li.querySelector<HTMLInputElement>("#todo-checkbox");
-
+          const editBtn=li.querySelector<HTMLButtonElement>('#edit-btn')
           deleteBtn?.addEventListener("click", () => {
             deleteTodo(todo.id);
           });
           checkBox?.addEventListener("change", () => {
             toggleTodo(todo.id);
           });
+          editBtn?.addEventListener("click",() => {
+            startEditing(todo);
+          }
+);
   return li;
 }
 
@@ -96,19 +103,69 @@ function toggleTodo(id: number): void {
   renderTodos();
 }
 
+//create edit functionality
+function startEditing(todo: Todo): void {
+  editingTodoId = todo.id;
+
+  if (!input || !submitBtn) return;
+
+  input.value = todo.taskName;
+
+  submitBtn.textContent = "Update";
+
+  input.focus();
+}
+
+//update functionality
+function updateTodo(id: number,newTaskName: string): void {
+  todos = todos.map((todo) => {
+    if (todo.id === id) {
+      return {
+        ...todo,
+        taskName: newTaskName,
+      };
+    }
+
+    return todo;
+  });
+
+  renderTodos();
+}
 form?.addEventListener("submit", (event) => {
   event.preventDefault();
+
   const taskName = input?.value.trim();
-  //if empty text
+
   if (!taskName) return;
- //create a todo
-  const todo: Todo = {
-    id: todos.length+1,
-    taskName,
-    completed: false,
-    createdAt: new Date().toISOString(),
-  };
-  todos.push(todo);
-  renderTodos();
-  toggleEmptyState();
+
+  // UPDATE todo
+  if (editingTodoId !== null) {
+    updateTodo(editingTodoId, taskName);
+
+    editingTodoId = null;
+
+    if (submitBtn) {
+      submitBtn.textContent = "Add";
+    }
+  }
+
+  // ADD todo
+  else {
+    const todo: Todo = {
+      id: todos.length+1,
+      taskName,
+      completed: false,
+      createdAt: new Date().toISOString(),
+    };
+
+    todos.push(todo);
+
+    renderTodos();
+    toggleEmptyState();
+  }
+
+  if (input) {
+    input.value = "";
+    input.focus();
+  }
 });
