@@ -1,60 +1,195 @@
+# 📝 TypoDO
 
-# TypoDO
+<p align="center">
+  <img src="./assets/TypoDO.png" alt="TypoDO Logo" width="120">
+</p>
 
-TypoDO is a lightweight, TypeScript-first todo web app prototype that demonstrates a clean separation between types and app logic, compiled to plain JavaScript for browser use.
+<p align="center">
+  <b>A modern, lightweight Todo application built with HTML, Tailwind CSS, and TypeScript.</b>
+  <br>
+  Designed to practice TypeScript fundamentals, CRUD operations, and Local Storage without using any frontend framework.
+</p>
 
-**Technologies**
-- HTML: [index.html](index.html)
-- CSS: [css/style.css](css/style.css)
-- JavaScript (build output): [js/main.js](js/main.js)
-- TypeScript (source): [ts/main.ts](ts/main.ts), [ts/types.ts](ts/types.ts)
-- Build tooling: `npm` + TypeScript (`tsc`) ([package.json](package.json))
+<p align="center">
+  <img src="https://img.shields.io/badge/TypeScript-5.x-3178C6?style=for-the-badge&logo=typescript&logoColor=white">
+  <img src="https://img.shields.io/badge/Tailwind_CSS-4.x-38BDF8?style=for-the-badge&logo=tailwind-css&logoColor=white">
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
+  <img src="https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
+</p>
 
-**Key Features**
-- TypeScript-based code organization with separate `types` and `main` modules.
-- Simple, dependency-light build process using `tsc`.
-- Static client-side app — no backend required.
-- Ready-to-open `index.html` for manual testing or serving with a static server.
+---
 
-**Getting Started**
+## ✨ Features
 
-1. Clone the repository:
+* ✅ Create new tasks
+* ✏️ Update existing tasks
+* 🗑️ Delete tasks
+* ☑️ Mark tasks as completed
+* 💾 Persistent storage using Local Storage
+* ⚡ Built with Vanilla TypeScript
+* 🎨 Modern responsive UI using Tailwind CSS
+* 📱 Mobile-friendly layout
 
-	git clone <repository-url>
-	cd TypoDO
+---
 
-2. Install development dependencies:
+## 🛠️ Tech Stack
 
-	npm install
+| Technology                | Purpose            |
+| ------------------------- | ------------------ |
+| HTML5                     | Structure          |
+| Tailwind CSS              | Styling            |
+| TypeScript                | Application Logic  |
+| Local Storage             | Data Persistence   |
+| npm                       | Package Management |
+| TypeScript Compiler (tsc) | Build Tool         |
 
-3. Build the TypeScript sources into JavaScript:
+---
 
-	npm run build
+## 📂 Project Structure
 
-4. Open the app:
+```text
+TypoDO
+│
+├── css
+│   └── style.css
+│
+├── js
+│   └── main.js          # Compiled JavaScript
+│
+├── ts
+│   ├── main.ts          # Main Application Logic
+│   └── types.ts         # Type Definitions
+│
+├── index.html
+├── package.json
+├── tsconfig.json
+└── README.md
+```
 
-- Open [index.html](index.html) directly in your browser, or
-- Serve the folder with a static server (recommended for full feature parity):
+---
 
-  npx serve .
+## 🚀 Getting Started
 
-**Development**
-- Edit source files in the `ts/` directory.
-- Re-run `npm run build` to compile changes to the `js/` folder.
-- Use your editor's Live Server extension or `npx serve` to auto-refresh while developing.
+### 1️⃣ Clone the Repository
 
-**Project Structure (Highlights)**
-- [index.html](index.html) — main entry page
-- [css/style.css](css/style.css) — styles
-- [js/main.js](js/main.js) — compiled script (output)
-- [ts/main.ts](ts/main.ts) — TypeScript application logic
-- [ts/types.ts](ts/types.ts) — TypeScript types
-- [package.json](package.json) — build script and devDependencies
+```bash
+git clone https://github.com/your-username/TypoDO.git
 
-**Contributing**
-- Open issues for bugs or feature requests.
-- Feel free to submit pull requests with clear descriptions and tests where appropriate.
+cd TypoDO
+```
 
-**License & Author**
-- License: ISC (see [package.json](package.json))
-- Author: Your Name Here
+---
+
+### 2️⃣ Install Dependencies
+
+```bash
+npm install
+```
+
+---
+
+### 3️⃣ Build TypeScript
+
+```bash
+npm run build
+```
+
+---
+
+### 4️⃣ Run the Project
+
+Using Live Server
+
+or
+
+```bash
+npx serve .
+```
+
+Then open:
+
+```
+http://localhost:3000
+```
+
+---
+
+## 📸 Preview
+
+> Add your screenshots here.
+
+```text
+assets/
+├── preview.png
+├── home.png
+└── mobile.png
+```
+
+Example:
+
+```md
+![Home](./assets/preview.png)
+```
+
+---
+
+## 📚 Learning Objectives
+
+This project demonstrates:
+
+* TypeScript Fundamentals
+* Interfaces
+* DOM Manipulation
+* Event Handling
+* CRUD Operations
+* Local Storage
+* Project Structure
+* Clean Code Principles
+
+---
+
+## 🔄 CRUD Operations
+
+| Operation       | Status |
+| --------------- | ------ |
+| Create          | ✅      |
+| Read            | ✅      |
+| Update          | ✅      |
+| Delete          | ✅      |
+| Toggle Complete | ✅      |
+| Local Storage   | ✅      |
+
+---
+
+## 💻 Development
+
+Watch for changes:
+
+```bash
+npm run build
+```
+
+Serve locally:
+
+```bash
+npx serve .
+```
+
+---
+
+## 🌟 Future Improvements
+
+* 🔍 Search Tasks
+* 🎯 Filter (All / Active / Completed)
+* 📅 Due Date
+* 🏷️ Categories
+* 🌙 Dark Mode
+* 📊 Task Statistics
+* ⌨️ Keyboard Shortcuts
+* 🎉 Drag & Drop Sorting
+
+---
+
+<p align="center">
+Made using TypeScript & Tailwind CSS
+</p>
