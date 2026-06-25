@@ -1,7 +1,7 @@
 # 📝 TypoDO
 
 <p align="center">
-  <img src="./assets/TypoDO.png" alt="TypoDO Logo" width="120">
+  <img src="https://i.ibb.co/bRyms0tj/Typo-DO.png" alt="TypoDO Logo" width="120">
 </p>
 
 <p align="center">
