@@ -17,6 +17,12 @@
   <img src="https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
 </p>
 
+<p align="center">
+  <a href="https://typo-do.vercel.app/" target="_blank" rel="noopener noreferrer">
+    <img src="https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge&logo=vercel" alt="Live Demo">
+  </a>
+</p>
+
 ---
 
 ## ✨ Features
